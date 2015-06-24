@@ -14,7 +14,7 @@ Later on, added three error-correcting characters to make their 18-character ID.
 `SalesforceIdFormatter.to_15` applies the same rules, returning 15-char IDs instead.
 
 Code is a modified version of https://gist.github.com/jbaylor-rpx/2691624
-(original does seemt to calculate control digits correctly)
+(original doesn't seem to calculate control digits correctly)
 
 ## Installation
 
