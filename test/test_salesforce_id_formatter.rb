@@ -4,6 +4,8 @@ class TestSalesforceIdFormatter < Minitest::Test
   def test_to_18
     assert_equal valid_18_chars, SalesforceIdFormatter.to_18(valid_18_chars)
     assert_equal valid_18_chars, SalesforceIdFormatter.to_18(valid_15_chars)
+    assert_equal valid_18_chars, SalesforceIdFormatter.to_18(with_encoded_space_15)
+    assert_equal valid_18_chars, SalesforceIdFormatter.to_18(with_encoded_space_18)
 
     assert_raises SalesforceIdFormatter::InvalidId do
       SalesforceIdFormatter.to_18(too_short)
@@ -63,5 +65,13 @@ class TestSalesforceIdFormatter < Minitest::Test
 
   def invalid_chars
     '15InvalidChars!'
+  end
+
+  def with_encoded_space_15
+    '%2070130000001tcyI'
+  end
+
+  def with_encoded_space_18
+    '%2070130000001tcyIAAQ'
   end
 end

@@ -2,10 +2,12 @@ require "salesforce_id_formatter/version"
 
 module SalesforceIdFormatter
   extend self
+  ENCODED_SPACE = '%20'
 
   InvalidId = Class.new(StandardError)
 
   def to_18(id)
+    id = remove_encoded_space(id) if has_encoded_space?(id)
     raise InvalidId unless valid_id?(id)
 
     id.size == 15 ? convert_15_to_18(id) : id
@@ -50,5 +52,13 @@ module SalesforceIdFormatter
     ]
     checkdigits = checkdigits.map {|d| decimal_to_base_32(d) }.join
     str + checkdigits
+  end
+
+  def remove_encoded_space(id)
+    id.sub ENCODED_SPACE, ''
+  end
+
+  def has_encoded_space?(id)
+    id.start_with? ENCODED_SPACE
   end
 end
