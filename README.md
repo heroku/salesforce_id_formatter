@@ -3,16 +3,27 @@ Later on, added three error-correcting characters to make their 18-character ID.
 
 ## Usage
 
-`SalesforceIdFormatter.to_18`:
+#### `SalesforceIdFormatter.to_18`
 
-- Converts a 15-char String to its equivalent 18-char ID as a String: `SalesforceIdFormatter.to_18('70130000001tcyI')  # =>  '70130000001tcyIAAQ'``
-- Leaves a 18-char String unaltered: `SalesforceIdFormatter.to_18('70130000001tcyIAAQ') # =>  '70130000001tcyIAAQ'`
-- Raises `SalesforceIdFormatter::InvalidId` if the given ID doesn't follow Salesforce's conventions
-  http://www.salesforce.com/us/developer/docs/api/Content/field_types.htm#i1435616
-  TL;DR: 15 or 18 alphanumeric, case-sensitive chars
+- Converts a 15-char String to its equivalent 18-char ID as a String:
+  `SalesforceIdFormatter.to_18('70130000001tcyI')  # =>  '70130000001tcyIAAQ'``
+- Leaves a 18-char String unaltered:
+  `SalesforceIdFormatter.to_18('70130000001tcyIAAQ') # =>  '70130000001tcyIAAQ'`
+- Raises `SalesforceIdFormatter::InvalidId` if the given ID doesn't follow
+  Salesforce's conventions
+http://www.salesforce.com/us/developer/docs/api/Content/field_types.htm#i1435616
+TL;DR: 15 or 18 alphanumeric, case-sensitive chars
 
-`SalesforceIdFormatter.to_15` applies the same rules, returning 15-char IDs instead.
+#### `SalesforceIdFormatter.to_15`
 
+- Applies the same rules as `to_18`, returning 15-char IDs instead.
+
+#### `SalesforceIdFormatter.valid_id?`
+
+- Returns false if passed string is either not 15/18 characters or is not
+  alphanumeric.
+
+## Attribution
 Code is a modified version of https://gist.github.com/jbaylor-rpx/2691624
 (original doesn't seem to calculate control digits correctly)
 
