@@ -18,7 +18,7 @@ module SalesforceIdFormatter
   end
 
   def valid_id?(id)
-    [15, 18].include?(id.size) && id.match(/[^a-zA-Z0-9]/).nil?
+    id && [15, 18].include?(id.size) && id.match(/[^a-zA-Z0-9]/).nil?
   end
 
   private
